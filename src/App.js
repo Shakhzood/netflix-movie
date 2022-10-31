@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+import React, { Fragment } from 'react';
+
 import './App.css';
+import Header from './components/Header';
+import Body from './components/Body';
+import Footer from './components/Footer/Footer';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <div className="app">
+        <ErrorBoundary>
+          <Header />
+        </ErrorBoundary>
+
+        <ErrorBoundary>
+          <Body />
+        </ErrorBoundary>
+
+        <ErrorBoundary>
+          <Footer />
+        </ErrorBoundary>
+      </div>
+      <div></div>
+    </Fragment>
   );
 }
 

@@ -1,0 +1,94 @@
+.single-movie {
+  width: 323px;
+  height: 540px;
+  margin-bottom: 32px;
+  cursor: pointer;
+  position: relative;
+  /* border: 1px solid red; */
+}
+
+
+.black-circle {
+  position: absolute;
+  top: 15px;
+  right: 14px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: #2A202D;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.196596);
+  z-index: 10;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.single-movie:hover .black-circle {
+  opacity: 1;
+}
+
+.movie-image {
+  z-index: 1;
+}
+
+.buttel-point {
+  margin: 2px 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #FFF;
+  z-index: 12;
+  opacity: 1;
+}
+
+.movie-title,
+.movie-birth-year {
+  margin: 24px 0 6px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+
+
+  color: #FFFFFF;
+
+  mix-blend-mode: normal;
+  opacity: 0.7;
+}
+
+.movie-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.year-border {
+  width: 66px !important;
+  height: 26px;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+  border: 1px solid #979797;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.movie-category {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+
+
+  color: #FFFFFF;
+
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
