@@ -1,0 +1,57 @@
+.label {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+
+  letter-spacing: 0.888889px;
+  text-transform: uppercase;
+
+  color: #F65261;
+
+  mix-blend-mode: normal;
+  opacity: 0.8;
+}
+
+.input-big {
+  width: 425px;
+  height: 57px;
+  background: rgba(50, 50, 50, 0.948044);
+  mix-blend-mode: normal;
+  opacity: 0.8;
+  border-radius: 4px;
+  padding: 0 12px;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  /* text-transform: capitalize; */
+
+  color: #FFFFFF;
+
+}
+
+.input-small {
+  width: 271px;
+  height: 57px;
+  background: rgba(50, 50, 50, 0.948044);
+  mix-blend-mode: normal;
+  opacity: 0.8;
+  border-radius: 4px;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 0 12px;
+
+  color: #FFFFFF;
+
+  mix-blend-mode: normal;
+  opacity: 0.3;
+}

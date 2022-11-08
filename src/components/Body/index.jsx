@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import DeleteMovieModal from '../ModalWindows/DeleteMovieModal/DeleteMovieModal';
+import EditMovieModal from '../ModalWindows/EditMovieModal/EditMovieModal';
 import MovieContainer from '../MovieContainer/MovieContainer';
+import Wrapper from '../Wrapper/Wrapper';
 import './body.css';
 
 const filterArr = [
@@ -11,13 +14,26 @@ const filterArr = [
 ];
 
 const Body = () => {
+  const [movieListArr, setmoiveListArr] = useState(filterArr);
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+
   return (
     <React.Fragment>
+      {/* Modal window */}
+      <Wrapper isModalOpen={isDeleteModalOpen} setModal={setDeleteModalOpen}>
+        <DeleteMovieModal isEditModalOpen={isDeleteModalOpen} setEditModal={setDeleteModalOpen} />
+      </Wrapper>
+
+      <Wrapper isModalOpen={isEditModalOpen} setModal={setEditModalOpen}>
+        <EditMovieModal isEditModalOpen={isEditModalOpen} setEditModal={setEditModalOpen} />
+      </Wrapper>
+
       <div className="body-container">
         <div className="filter-category-container">
           <div className="filter-category">
             <ul>
-              {filterArr.map((item) => {
+              {movieListArr.map((item) => {
                 return (
                   <li key={item.id} className="filter-items">
                     {item.title}
@@ -42,7 +58,10 @@ const Body = () => {
           </div>
         </div>
         {/* Movie conmtainer */}
-        <MovieContainer />
+        <MovieContainer
+          setDeleteModalOpen={setDeleteModalOpen}
+          setEditModalOpen={setEditModalOpen}
+        />
       </div>
       <div>{/* something will be here later */}</div>
     </React.Fragment>

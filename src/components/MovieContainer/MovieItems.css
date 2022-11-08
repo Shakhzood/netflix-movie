@@ -4,9 +4,7 @@
   margin-bottom: 32px;
   cursor: pointer;
   position: relative;
-  /* border: 1px solid red; */
 }
-
 
 .black-circle {
   position: absolute;
@@ -17,7 +15,7 @@
   border-radius: 50%;
   background-color: #2A202D;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.196596);
-  z-index: 10;
+  z-index: 8;
   opacity: 0;
   display: flex;
   justify-content: center;
@@ -25,8 +23,57 @@
   flex-direction: column;
 }
 
+/* edit modal window */
+.edit-modal-window {
+  height: 111px;
+  background: rgba(35, 35, 35, 0.918051);
+  border-radius: 4px;
+  text-transform: capitalize;
+
+  position: absolute;
+  top: 15px;
+  right: 14px;
+
+  display: flex;
+  flex-direction: column;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+
+
+  color: #FFFFFF;
+
+  mix-blend-mode: normal;
+  opacity: 0.8;
+}
+
+.close-btn-container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.edit-modal-window div {
+  width: 141px;
+  height: 34px;
+  padding: 8px 23px;
+}
+
+.edit-modal-window div:hover {
+  /* width: 9rem; */
+  height: 34px;
+  background: #F65261;
+  transition: all 0.4s ease;
+  border-radius: 4px;
+}
+
 .single-movie:hover .black-circle {
   opacity: 1;
+  transition: all 0.5s ease;
 }
 
 .movie-image {

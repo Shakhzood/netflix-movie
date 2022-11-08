@@ -1,0 +1,141 @@
+.open-add-movie-modal {
+  width: 976px;
+  height: 917px !important;
+  background-color: #232323;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+}
+
+.make-center {
+  margin: 12px 0;
+  display: flex;
+  justify-content: center;
+  /* flex-direction: column; */
+}
+
+.movie-info-container {
+  width: 86%;
+  height: 400px;
+
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.select-genre-title {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #FFFFFF;
+
+  mix-blend-mode: normal;
+  opacity: 0.8;
+  padding: 17px 3px;
+}
+
+.selection-input {
+  position: relative;
+}
+
+.red-square {
+  width: 14px;
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  cursor: pointer;
+  transition: all 0.7s ease;
+  transform: rotate(0deg);
+}
+
+.rotate-red-square {
+  width: 14px;
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  cursor: pointer;
+  transition: all 1s ease;
+  transform: rotate(180deg);
+}
+
+.select-genre {
+  width: 445px;
+  height: 187px;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  z-index: 1 !important;
+
+  background: rgba(35, 35, 35, 0.9);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1), 0px 2px 10px rgba(0, 0, 0, 0.1), 0px 10px 20px rgba(0, 0, 0, 0.1), 0px 10px 50px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(13.5914px);
+
+  border-radius: 4px;
+}
+
+.select-genre p {
+  margin: 12px;
+}
+
+.centering {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textarea {
+  width: 790px;
+  height: 167px;
+  background: #323232F2;
+  padding: 18px;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #FFFFFF;
+
+  mix-blend-mode: normal;
+  /* opacity: 0.3; */
+  /* position: absolute; */
+  z-index: -1;
+}
+
+.date-container {
+  position: relative;
+}
+
+.date-icon {
+  width: 24px;
+  position: absolute;
+  top: 40px;
+  right: 32px;
+
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+input[type=checkbox] {
+  accent-color: #E64C5A;
+}
+
+.btn-container {
+  margin: 42px 0;
+  width: 91%;
+  padding: 12px;
+
+  display: flex;
+  justify-content: end;
+}

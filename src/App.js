@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
-
-import './App.css';
 import Header from './components/Header';
 import Body from './components/Body';
 import Footer from './components/Footer/Footer';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
+import './App.css';
+
 function App() {
+
   return (
     <Fragment>
       <div className="app">

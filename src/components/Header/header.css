@@ -61,4 +61,23 @@
   border: none;
 }
 
-.userInput {}
+/* add movie modal */
+
+
+.open-modal {
+  width: 696px;
+  height: 647px;
+  background-color: #232323;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+}
+
+.close-modal {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}

@@ -1,5 +1,7 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import styled from 'styled-components';
+import AddMovieModal from '../ModalWindows/AddMovieModal/AddMovieModal';
+import Wrapper from '../Wrapper/Wrapper';
 import './header.css';
 
 const HeaderContainer = styled.header`
@@ -38,8 +40,14 @@ const HeaderTop = styled.header`
 `;
 
 const Header = () => {
+  const [isAddMovieOpen, setAddMovie] = useState(false);
+
   return (
     <Fragment>
+      <Wrapper isModalOpen={isAddMovieOpen} setModal={setAddMovie}>
+        <AddMovieModal isAddMovieOpen={isAddMovieOpen} setModal={setAddMovie} />
+      </Wrapper>
+
       <HeaderContainer>
         {/* logo button */}
         <HeaderTop>
@@ -51,7 +59,9 @@ const Header = () => {
               src="./images/netflixroulette.png"
               alt="logo"
             />
-            <Button className="btn-pointer">+ add movie</Button>
+            <Button onClick={() => setAddMovie(!isAddMovieOpen)} className="btn-pointer">
+              + add movie
+            </Button>
           </div>
           <div className="search-movie-container">
             <h1 className="search-title">find your movie</h1>
