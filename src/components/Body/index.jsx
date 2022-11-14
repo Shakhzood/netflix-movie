@@ -13,7 +13,7 @@ const filterArr = [
     { title: 'crime', id: 5 },
 ];
 
-const Body = () => {
+const Body = ({ setMovieOpen }) => {
     const [movieListArr, setMoiveListArr] = useState(filterArr);
     const [isEditModalOpen, setEditModalOpen] = useState(false);
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -63,6 +63,7 @@ const Body = () => {
                 </div>
                 {/* Movie conmtainer */}
                 <MovieContainer
+                    setMovieOpen={setMovieOpen}
                     setDeleteModalOpen={setDeleteModalOpen}
                     setEditModalOpen={setEditModalOpen}
                 />

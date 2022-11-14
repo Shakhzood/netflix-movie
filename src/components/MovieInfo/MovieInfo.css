@@ -1,0 +1,36 @@
+.movie-info-box {
+    width: 100%;
+    height: 500px;
+    background-color: #232323;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-container {
+    width: 80%;
+    height: 73px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.movie-info {
+    width: 80%;
+    height: inherit;
+    border: 1px solid red;
+    display: flex;
+}
+
+.movie-image-box {
+    width: 323.41px;
+    height: 416px;
+    border: 1px solid red;
+}
+
+.selected-movie-info-box {
+    width: 60%;
+    border: 1px solid blue;
+    color: white;
+}

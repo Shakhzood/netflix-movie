@@ -5,7 +5,7 @@ import MovieItems from './MovieItems';
 
 import './MovieContainer.css';
 
-const MovieContainer = ({ setDeleteModalOpen, setEditModalOpen }) => {
+const MovieContainer = ({ setDeleteModalOpen, setEditModalOpen, setMovieOpen }) => {
     const { movieList } = useSelector((state) => state.movieReducer);
 
     return (
@@ -13,6 +13,7 @@ const MovieContainer = ({ setDeleteModalOpen, setEditModalOpen }) => {
             <div className="movie-container">
                 {movieList.map((movie) => (
                     <MovieItems
+                        setMovieOpen={setMovieOpen}
                         setDeleteModalOpen={setDeleteModalOpen}
                         setEditModalOpen={setEditModalOpen}
                         key={movie.id}

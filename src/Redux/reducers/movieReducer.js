@@ -4,7 +4,8 @@ let movieListArr = [
         title: 'Pulp Fiction',
         movieUrl: 'https://www.moana.com',
         genre: ['crime'],
-        overview: 'this is good movie ever you have seen it in your life',
+        overview:
+            'Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also asked Vincent to take his wife Mia (Uma Thurman) out a few days later when Wallace himself will be out of town. Butch Coolidge (Bruce Willis) is an aging boxer who is paid by Wallace to lose his fight. The lives of these seemingly unrelated people are woven together comprising of a series of funny, bizarre and uncalled-for incidents.—Soumitra',
         year: 2004,
         releaseDate: '11/14/2016',
         rating: '7.6',
@@ -17,7 +18,8 @@ let movieListArr = [
         title: 'Bohemian Rhapsody',
         movieUrl: 'https://www.moana.com',
         genre: ['crime'],
-        overview: 'this is good movie ever you have seen it in your life',
+        overview:
+            'Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also asked Vincent to take his wife Mia (Uma Thurman) out a few days later when Wallace himself will be out of town. Butch Coolidge (Bruce Willis) is an aging boxer who is paid by Wallace to lose his fight. The lives of these seemingly unrelated people are woven together comprising of a series of funny, bizarre and uncalled-for incidents.—Soumitra',
         releaseDate: '11/14/2016',
         rating: '7.6',
         runTime: '1h 47min',
@@ -30,7 +32,8 @@ let movieListArr = [
         title: 'Kill Bill: Vol 2',
         movieUrl: 'https://www.moana.com',
         genre: ['crime'],
-        overview: 'this is good movie ever you have seen it in your life',
+        overview:
+            'Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also asked Vincent to take his wife Mia (Uma Thurman) out a few days later when Wallace himself will be out of town. Butch Coolidge (Bruce Willis) is an aging boxer who is paid by Wallace to lose his fight. The lives of these seemingly unrelated people are woven together comprising of a series of funny, bizarre and uncalled-for incidents.—Soumitra',
         releaseDate: '11/14/2016',
         rating: '7.6',
         runTime: '1h 47min',
@@ -43,7 +46,8 @@ let movieListArr = [
         title: 'Avengers: War of Infinity',
         movieUrl: 'https://www.moana.com',
         genre: ['crime'],
-        overview: 'this is good movie ever you have seen it in your life',
+        overview:
+            'Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also asked Vincent to take his wife Mia (Uma Thurman) out a few days later when Wallace himself will be out of town. Butch Coolidge (Bruce Willis) is an aging boxer who is paid by Wallace to lose his fight. The lives of these seemingly unrelated people are woven together comprising of a series of funny, bizarre and uncalled-for incidents.—Soumitra',
         releaseDate: '11/14/2016',
         rating: '7.6',
         runTime: '1h 47min',
@@ -56,7 +60,8 @@ let movieListArr = [
         title: 'Inception',
         movieUrl: 'https://www.moana.com',
         genre: ['crime'],
-        overview: 'this is good movie ever you have seen it in your life',
+        overview:
+            'Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also asked Vincent to take his wife Mia (Uma Thurman) out a few days later when Wallace himself will be out of town. Butch Coolidge (Bruce Willis) is an aging boxer who is paid by Wallace to lose his fight. The lives of these seemingly unrelated people are woven together comprising of a series of funny, bizarre and uncalled-for incidents.—Soumitra',
         releaseDate: '11/14/2016',
         rating: '7.6',
         runTime: '1h 47min',
@@ -69,7 +74,8 @@ let movieListArr = [
         title: 'Reservoir dogs',
         movieUrl: 'https://www.moana.com',
         genre: ['crime'],
-        overview: 'this is good movie ever you have seen it in your life',
+        overview:
+            'Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also asked Vincent to take his wife Mia (Uma Thurman) out a few days later when Wallace himself will be out of town. Butch Coolidge (Bruce Willis) is an aging boxer who is paid by Wallace to lose his fight. The lives of these seemingly unrelated people are woven together comprising of a series of funny, bizarre and uncalled-for incidents.—Soumitra',
         releaseDate: '11/14/2016',
         rating: '7.6',
         runTime: '1h 47min',
@@ -84,14 +90,16 @@ const initialState = {
     movieId: 0,
 };
 
+const selectMovieInfo = (state, movieId) => {
+    return { ...state, movieId };
+};
+
 const movieReducer = (state = initialState, action) => {
     switch (action.type) {
-    case 'ADD_TODO':
-        return state;
-    case 'TOGGLE_TODO':
-        return state;
-    default:
-        return state;
+        case 'UPDATE_MOVIE_INFO':
+            return selectMovieInfo(state, action.payload);
+        default:
+            return state;
     }
 };
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import './MovieItems.css';
 
@@ -11,12 +11,15 @@ const MovieItems = ({
     year,
     type,
     url: imgUrl,
+    setMovieOpen,
 }) => {
     const [isOpen, setOpen] = useState(false);
     const [editMovie, setEditMovie] = useState({});
     const { movieList } = useSelector((state) => state.movieReducer);
+    const dispatch = useDispatch();
 
-    const openEditWindow = () => {
+    const openEditWindow = (e) => {
+        e.stopPropagation();
         setOpen(!isOpen);
     };
     const openDeleteWindow = () => {
@@ -24,18 +27,20 @@ const MovieItems = ({
         setOpen(!isOpen);
     };
 
-    const test = (movieId) => {
+    const editMovieFunc = (movieId) => {
         setEditModalOpen((isEditModalOpen) => !isEditModalOpen);
         let selectedElem = movieList.find((item) => item.id === movieId);
         setEditMovie(selectedElem);
-        console.log(selectedElem);
-        console.log(movieList);
     };
     // const { title, movieUrl, runTime, releaseDate, genre, rating, overview } = editMovie;
+    function selectMovie(movieId) {
+        dispatch({ type: 'UPDATE_MOVIE_INFO', payload: movieId });
+        setMovieOpen(true);
+    }
 
     return (
         <React.Fragment>
-            <div className="single-movie" key={movieId}>
+            <div className="single-movie" key={movieId} onClick={() => selectMovie(movieId)}>
                 <img className="movie-image" src={imgUrl} alt="movieImage" />
 
                 {/* 3 dots with back circle */}
@@ -49,11 +54,11 @@ const MovieItems = ({
 
                 {/* Open edit modal window */}
                 {isOpen && (
-                    <div className="edit-modal-window">
+                    <div onClick={(e) => e.stopPropagation()} className="edit-modal-window">
                         <div className="close-btn-container" onClick={() => setOpen(!isOpen)}>
                             <img src="./images/close-icon.png" alt="" />
                         </div>
-                        <div onClick={() => test(movieId)}>edit</div>
+                        <div onClick={() => editMovieFunc(movieId)}>edit</div>
                         <div onClick={openDeleteWindow}>delete</div>
                     </div>
                 )}

@@ -14,7 +14,9 @@ function App() {
     return (
         <Fragment>
             <div className="app">
-                <ErrorBoundary>{isMovieOpen ? <MovieInfo /> : <Header />}</ErrorBoundary>
+                <ErrorBoundary>
+                    {isMovieOpen ? <MovieInfo setMovieOpen={setMovieOpen} /> : <Header />}
+                </ErrorBoundary>
 
                 <ErrorBoundary>
                     <Body setMovieOpen={setMovieOpen} />
