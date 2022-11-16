@@ -22,10 +22,7 @@
     ],
     "rules": {
         "no-unused-vars": "off",
-        "indent": [
-            "error",
-            4
-        ],
+        "indent": "off",
         "linebreak-style": 0,
         // "endOfLine": "auto",
         "quotes": [

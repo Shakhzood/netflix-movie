@@ -12,7 +12,6 @@ const HeaderContainer = styled.header`
     background-size: cover;
     background-position: center center;
     margin-bottom: 10px;
-    border: 1px solid red;
 `;
 const Button = styled.button`
     font-family: 'Montserrat';

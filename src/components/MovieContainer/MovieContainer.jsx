@@ -1,17 +1,25 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import MovieItems from './MovieItems';
 
+import { fetchMovies } from '../../Redux/Thunk/Thunk';
 import './MovieContainer.css';
 
 const MovieContainer = ({ setDeleteModalOpen, setEditModalOpen, setMovieOpen }) => {
-    const { movieList } = useSelector((state) => state.movieReducer);
+    const { movieListData } = useSelector((state) => state.movieReducer);
 
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchMovies());
+    }, []);
+
+    let isMovieAvailable = movieListData.data !== undefined && movieListData.data.length > 0;
+    console.log(1, movieListData);
     return (
         <React.Fragment>
             <div className="movie-container">
-                {movieList.map((movie) => (
+                {isMovieAvailable && movieListData.data.map((movie) => (
                     <MovieItems
                         setMovieOpen={setMovieOpen}
                         setDeleteModalOpen={setDeleteModalOpen}
@@ -24,5 +32,12 @@ const MovieContainer = ({ setDeleteModalOpen, setEditModalOpen, setMovieOpen }) 
         </React.Fragment>
     );
 };
+
+MovieContainer.propTypes = {
+    setDeleteModalOpen: PropTypes.func,
+    setEditModalOpen: PropTypes.func,
+    setMovieOpen: PropTypes.func
+};
+
 
 export default MovieContainer;

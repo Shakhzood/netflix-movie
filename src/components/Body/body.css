@@ -76,7 +76,6 @@
 
 .select-date-container {
   width: 296px;
-  /* border: 1px solid red; */
   display: flex;
   justify-content: space-around;
 }

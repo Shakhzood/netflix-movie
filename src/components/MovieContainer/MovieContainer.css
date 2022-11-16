@@ -1,15 +1,11 @@
 .movie-container {
   width: 80%;
   margin: 12px auto 0;
-  /* border: 1px solid red; */
+  padding: 0 0 5rem 0;
   box-sizing: border-box;
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 272px;
-  grid-row-gap: 20px;
-  /* display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap; */
+  grid-row-gap: 3rem;
 }

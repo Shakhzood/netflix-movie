@@ -6,7 +6,6 @@ import './MovieInfo.css';
 const MovieInfo = ({ setMovieOpen }) => {
     const { movieList, movieId } = useSelector((state) => state.movieReducer);
     const currentMovie = movieList.find((item) => item.id === movieId);
-    console.log(currentMovie);
     return (
         <div className="movie-info-box">
             <div className="logo-container">

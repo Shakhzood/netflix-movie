@@ -5,11 +5,9 @@
   justify-content: space-between;
   width: 92%;
   align-items: center;
-  /* border: 1px solid red; */
 }
 
 .search-movie-container {
-  /* border: 1px solid red; */
   width: 80%;
   display: flex;
   height: 250px;
