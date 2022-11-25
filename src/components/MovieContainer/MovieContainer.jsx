@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import MovieItems from './MovieItems';
@@ -15,19 +15,20 @@ const MovieContainer = ({ setDeleteModalOpen, setEditModalOpen, setMovieOpen }) 
     }, []);
 
     let isMovieAvailable = movieListData.data !== undefined && movieListData.data.length > 0;
-    console.log(1, movieListData);
+    // console.log(1, movieListData);
     return (
         <React.Fragment>
             <div className="movie-container">
-                {isMovieAvailable && movieListData.data.map((movie) => (
-                    <MovieItems
-                        setMovieOpen={setMovieOpen}
-                        setDeleteModalOpen={setDeleteModalOpen}
-                        setEditModalOpen={setEditModalOpen}
-                        key={movie.id}
-                        {...movie}
-                    />
-                ))}
+                {isMovieAvailable &&
+                    movieListData.data.map((movie) => (
+                        <MovieItems
+                            setMovieOpen={setMovieOpen}
+                            setDeleteModalOpen={setDeleteModalOpen}
+                            setEditModalOpen={setEditModalOpen}
+                            key={movie.id}
+                            {...movie}
+                        />
+                    ))}
             </div>
         </React.Fragment>
     );
@@ -36,8 +37,7 @@ const MovieContainer = ({ setDeleteModalOpen, setEditModalOpen, setMovieOpen }) 
 MovieContainer.propTypes = {
     setDeleteModalOpen: PropTypes.func,
     setEditModalOpen: PropTypes.func,
-    setMovieOpen: PropTypes.func
+    setMovieOpen: PropTypes.func,
 };
-
 
 export default MovieContainer;

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import DeleteMovieModal from '../ModalWindows/DeleteMovieModal/DeleteMovieModal';
 import EditMovieModal from '../ModalWindows/EditMovieModal/EditMovieModal';
 import MovieContainer from '../MovieContainer/MovieContainer';
@@ -17,6 +19,10 @@ const Body = ({ setMovieOpen }) => {
     const [movieListArr, setMoiveListArr] = useState(filterArr);
     const [isEditModalOpen, setEditModalOpen] = useState(false);
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+
+    const { movieListData } = useSelector((state) => state.movieReducer);
+    const { data } = movieListData;
+    let isDataReady = Object.keys(movieListData).length > 0;
 
     return (
         <React.Fragment>
@@ -60,6 +66,9 @@ const Body = ({ setMovieOpen }) => {
                             />
                         </div>
                     </div>
+                </div>
+                <div className="filter-category-container number-of-movies">
+                    <span>{`${isDataReady ? data.length : '0'}`} found movies</span>
                 </div>
                 {/* Movie conmtainer */}
                 <MovieContainer
