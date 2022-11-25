@@ -36,6 +36,7 @@ const MovieItems = ({
     function selectMovie(movieId) {
         dispatch({ type: 'UPDATE_MOVIE_INFO', payload: movieId });
         setMovieOpen(true);
+        window.scrollTo(0, 0);
     }
 
     return (

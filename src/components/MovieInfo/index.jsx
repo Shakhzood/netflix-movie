@@ -16,7 +16,7 @@ const MovieInfo = ({ setMovieOpen }) => {
     let fullRunTime = `${rhours}h ${minutes}min`;
 
     return (
-        <div className="movie-info-box" onClick={() => setMovieOpen(true)}>
+        <div className="movie-info-box">
             <div className="logo-container">
                 <img
                     className="btn-pointer"

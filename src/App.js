@@ -9,26 +9,26 @@ import './App.css';
 import MovieInfo from './components/MovieInfo';
 
 function App() {
-    const [isMovieOpen, setMovieOpen] = useState(false);
+  const [isMovieOpen, setMovieOpen] = useState(false);
 
-    return (
-        <Fragment>
-            <div className="app">
-                <ErrorBoundary>
-                    {isMovieOpen ? <MovieInfo setMovieOpen={setMovieOpen} /> : <Header />}
-                </ErrorBoundary>
+  return (
+    <Fragment>
+      <div className="app">
+        <ErrorBoundary>
+          {isMovieOpen ? <MovieInfo setMovieOpen={setMovieOpen} /> : <Header />}
+        </ErrorBoundary>
 
-                <ErrorBoundary>
-                    <Body setMovieOpen={setMovieOpen} />
-                </ErrorBoundary>
+        <ErrorBoundary>
+          <Body setMovieOpen={setMovieOpen} />
+        </ErrorBoundary>
 
-                <ErrorBoundary>
-                    <Footer />
-                </ErrorBoundary>
-            </div>
-            <div></div>
-        </Fragment>
-    );
+        <ErrorBoundary>
+          <Footer />
+        </ErrorBoundary>
+      </div>
+      <div></div>
+    </Fragment>
+  );
 }
 
 export default App;

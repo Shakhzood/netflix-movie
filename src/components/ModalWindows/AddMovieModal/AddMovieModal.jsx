@@ -6,6 +6,19 @@ import './AddMovieModal.css';
 
 const AddMovieModal = ({ isAddMovieOpen, setModal, children }) => {
     const [isGanreOpen, setGanreOpen] = useState(false);
+    const [title, setTitle] = useState('');
+    const [releaseDate, setReleaseDate] = useState('');
+    
+    const getMovieTitle = (e) => {
+        setTitle(e.target.value);
+    };
+    const test = (e) => {
+        setReleaseDate(e.target.value);
+        console.log(releaseDate);
+    };
+
+
+
     return (
         <div
             onClick={(e) => e.stopPropagation()}
@@ -17,7 +30,7 @@ const AddMovieModal = ({ isAddMovieOpen, setModal, children }) => {
                 <div className="make-center">
                     <div className="movie-info-container">
                         <div>
-                            <Input type="text" label="title" value="Moana" className="input-big" />
+                            <Input stateValue={title} onChange={getMovieTitle} type="text" label="title" value="Moana" className="input-big" />
                         </div>
                         <div className="date-container">
                             <img
@@ -26,10 +39,13 @@ const AddMovieModal = ({ isAddMovieOpen, setModal, children }) => {
                                 alt="date-icon"
                             />
                             <Input
+                                stateValue={releaseDate} 
+                                onChange={test}
                                 type="date"
                                 label="RELEASE DATE"
                                 placeholder="Select Date"
                                 className="input-small"
+
                             />
                         </div>
                         <div>
