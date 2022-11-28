@@ -2,7 +2,7 @@ button {
   width: 182px;
   height: 57px;
   background-color: #232323;
-  border: 1.5px solid #F65261;
+  border: 1.5px solid #f65261;
   border-radius: 4px;
 
   font-family: 'Montserrat';
@@ -13,14 +13,14 @@ button {
   text-align: center;
   text-transform: uppercase;
 
-  color: #F65261;
+  color: #f65261;
 }
 
 .submit-btn {
   margin: 0 12px;
   width: 182px;
   height: 57px;
-  background: #F65261;
+  background: #f65261;
   border-radius: 4px;
 
   font-family: 'Montserrat';
@@ -31,5 +31,6 @@ button {
   text-align: center;
   text-transform: uppercase;
 
-  color: #FFFFFF;
+  color: #ffffff;
+  cursor: pointer;
 }

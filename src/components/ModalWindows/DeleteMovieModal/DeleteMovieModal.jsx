@@ -1,19 +1,33 @@
 import React from 'react';
+import {useDispatch, useSelector } from 'react-redux';
 import ModalHeader from '../ModalHeader/ModalHeader';
+import { deleteSingleMovie } from '../../../Redux/Thunk/Thunk';
 import './DeleteMovieModal.css';
 
-const DeleteMovieModal = ({ isEditModalOpen, setEditModal }) => {
+const DeleteMovieModal = () => {
+    const {deletingMovieId, isDeleteModalOpen} = useSelector((state) => state.movieReducer);
+    const dispatch = useDispatch();
+
+    const deleteMovie = (deletingMovieId) => {
+        console.log(deletingMovieId);
+        dispatch(deleteSingleMovie(deletingMovieId));
+    };
+
+    const setModal = () => {
+        dispatch({type: 'CLOSING_MODAL', payload: 'isDeleteModalOpen'});
+    };
+
     return (
         <div
             onClick={(e) => e.stopPropagation()}
-            className={`${isEditModalOpen ? 'delete-movie-container' : 'hide-delete'}`}
+            className={`${isDeleteModalOpen ? 'delete-movie-container' : 'hide-delete'}`}
         >
-            <ModalHeader setModal={setEditModal}>delete movie</ModalHeader>
+            <ModalHeader setModal={setModal}>delete movie</ModalHeader>
             <div>
                 <p className="delete-movie-confirm">Are you sure you want to delete this movie?</p>
             </div>
             <div className="confirm-container">
-                <button className="confirm-btn">confirm</button>
+                <button onClick={() => deleteMovie(deletingMovieId)} className="confirm-btn">confirm</button>
             </div>
         </div>
     );

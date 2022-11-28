@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
 import ModalHeader from '../ModalHeader/ModalHeader';
 import Input from '../../Input/Input';
 import Button from '../../Button/Button';
 
 import './EditMovieModal.css';
 
-const EditMovieModal = ({ isEditModalOpen, setEditModal }) => {
+const EditMovieModal = ({ isEditModalOpen }) => {
     const [isGanreOpen, setGanreOpen] = useState(false);
+    const dispatch = useDispatch();
     // const [selectedMovie, setSelectedMovie] = useState({});
     // const { movieList, movieId } = useSelector((state) => state.movieReducer);
+    const closeModal = () => {
+        dispatch({type: 'CLOSING_MODAL', payload: 'isEditModalOpen'});
+    };
 
     return (
         <div
             onClick={(e) => e.stopPropagation()}
             className={`${isEditModalOpen ? 'open-add-movie-modal' : 'close-modal'}`}
         >
-            <ModalHeader setModal={setEditModal}>EDIT MOVIE</ModalHeader>
+            <ModalHeader setModal={closeModal}>EDIT MOVIE</ModalHeader>
 
             <div>
                 <div className="make-center">

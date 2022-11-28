@@ -6,7 +6,7 @@ import MovieItems from './MovieItems';
 import { fetchMovies } from '../../Redux/Thunk/Thunk';
 import './MovieContainer.css';
 
-const MovieContainer = ({ setDeleteModalOpen, setEditModalOpen, setMovieOpen }) => {
+const MovieContainer = ({setMovieOpen }) => {
     const { movieListData } = useSelector((state) => state.movieReducer);
 
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const MovieContainer = ({ setDeleteModalOpen, setEditModalOpen, setMovieOpen }) 
     }, []);
 
     let isMovieAvailable = movieListData.data !== undefined && movieListData.data.length > 0;
-    // console.log(1, movieListData);
+
     return (
         <React.Fragment>
             <div className="movie-container">
@@ -23,8 +23,6 @@ const MovieContainer = ({ setDeleteModalOpen, setEditModalOpen, setMovieOpen }) 
                     movieListData.data.map((movie) => (
                         <MovieItems
                             setMovieOpen={setMovieOpen}
-                            setDeleteModalOpen={setDeleteModalOpen}
-                            setEditModalOpen={setEditModalOpen}
                             key={movie.id}
                             {...movie}
                         />

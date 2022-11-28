@@ -5,7 +5,6 @@ import './MovieItems.css';
 
 const MovieItems = ({
     setDeleteModalOpen,
-    setEditModalOpen,
     id: movieId,
     title,
     year,
@@ -22,13 +21,14 @@ const MovieItems = ({
         e.stopPropagation();
         setOpen(!isOpen);
     };
-    const openDeleteWindow = () => {
-        setDeleteModalOpen((isEditModalOpen) => !isEditModalOpen);
+    const openDeleteWindow = (movieId) => {
+        dispatch({type: 'OPEN_MODAL', payload: 'isDeleteModalOpen' });
         setOpen(!isOpen);
+        dispatch({type:'UPDATE_DELETING_MOVIE_ID', payload: movieId});
     };
 
     const editMovieFunc = (movieId) => {
-        setEditModalOpen((isEditModalOpen) => !isEditModalOpen);
+        dispatch({type: 'OPEN_MODAL', payload: 'isEditModalOpen'});
         let selectedElem = movieListData.find((item) => item.id === movieId);
         setEditMovie(selectedElem);
     };
@@ -64,7 +64,7 @@ const MovieItems = ({
                             <img src="./images/close-icon.png" alt="" />
                         </div>
                         <div onClick={() => editMovieFunc(movieId)}>edit</div>
-                        <div onClick={openDeleteWindow}>delete</div>
+                        <div onClick={() => openDeleteWindow(movieId)}>delete</div>
                     </div>
                 )}
 

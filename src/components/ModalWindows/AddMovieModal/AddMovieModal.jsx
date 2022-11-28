@@ -69,6 +69,13 @@ const AddMovieModal = ({ isAddMovieOpen, setModal, children }) => {
     };
     const submitNewMovieInfo = () => {
         dispatch(postNewMovie(newMovieObj));
+        setGanreOpen(false);
+        setTitle('');
+        setReleaseDate('');
+        setMovieUrl('');
+        setRating('');
+        setRuntime(0);
+        setOverview('');
     };
 
     return (

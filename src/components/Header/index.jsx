@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components';
 import AddMovieModal from '../ModalWindows/AddMovieModal/AddMovieModal';
 import Wrapper from '../Wrapper/Wrapper';
@@ -40,12 +41,15 @@ const HeaderTop = styled.header`
 `;
 
 const Header = () => {
-    const [isAddMovieOpen, setAddMovie] = useState(false);
+    const {isAddMovieOpen} = useSelector((state) => state.movieReducer);
+    const dispatch = useDispatch();
+    console.log(isAddMovieOpen);
+    // const [isAddMovieOpen, setAddMovie] = useState(false);
 
     return (
         <Fragment>
-            <Wrapper isModalOpen={isAddMovieOpen} setModal={setAddMovie}>
-                <AddMovieModal isAddMovieOpen={isAddMovieOpen} setModal={setAddMovie} />
+            <Wrapper isModalOpen={isAddMovieOpen} setModal={() => dispatch({type: 'CLOSING_MODAL', payload: 'isAddMovieOpen'})}>
+                <AddMovieModal isAddMovieOpen={isAddMovieOpen} setModal={() => dispatch({type: 'CLOSING_MODAL', payload: 'isAddMovieOpen'})} />
             </Wrapper>
 
             <HeaderContainer>
@@ -59,7 +63,7 @@ const Header = () => {
                             alt="logo"
                         />
                         <Button
-                            onClick={() => setAddMovie(!isAddMovieOpen)}
+                            onClick={() => dispatch({type: 'OPEN_MODAL', payload: 'isAddMovieOpen'})}
                             className="btn-pointer"
                         >
                             + add movie

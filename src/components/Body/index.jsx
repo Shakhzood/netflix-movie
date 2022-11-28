@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import DeleteMovieModal from '../ModalWindows/DeleteMovieModal/DeleteMovieModal';
 import EditMovieModal from '../ModalWindows/EditMovieModal/EditMovieModal';
@@ -17,26 +17,29 @@ const filterArr = [
 
 const Body = ({ setMovieOpen }) => {
     const [movieListArr, setMoiveListArr] = useState(filterArr);
-    const [isEditModalOpen, setEditModalOpen] = useState(false);
-    const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-
-    const { movieListData } = useSelector((state) => state.movieReducer);
+    const dispatch = useDispatch();
+    const { movieListData, isDeleteModalOpen, isEditModalOpen } = useSelector((state) => state.movieReducer);
     const { data } = movieListData;
     let isDataReady = Object.keys(movieListData).length > 0;
+
+    const openModal = (modalName) => {
+        dispatch({type: 'OPEN_MODAL', payload: modalName });
+    };
+    const closeModal = (modalName) => {
+        dispatch({type: 'CLOSING_MODAL', payload: modalName });
+    };
 
     return (
         <React.Fragment>
             {/* Modal window */}
-            <Wrapper isModalOpen={isDeleteModalOpen} setModal={setDeleteModalOpen}>
+            <Wrapper isModalOpen={isDeleteModalOpen} setModal={() => closeModal('isDeleteModalOpen')}>
                 <DeleteMovieModal
-                    isEditModalOpen={isDeleteModalOpen}
-                    setEditModal={setDeleteModalOpen}
                     setMoiveListArr={setMoiveListArr}
                 />
             </Wrapper>
 
-            <Wrapper isModalOpen={isEditModalOpen} setModal={setEditModalOpen}>
-                <EditMovieModal isEditModalOpen={isEditModalOpen} setEditModal={setEditModalOpen} />
+            <Wrapper isModalOpen={isEditModalOpen} setModal={() => closeModal('isEditModalOpen')}>
+                <EditMovieModal isEditModalOpen={isEditModalOpen} />
             </Wrapper>
 
             <div className="body-container">
@@ -73,8 +76,6 @@ const Body = ({ setMovieOpen }) => {
                 {/* Movie conmtainer */}
                 <MovieContainer
                     setMovieOpen={setMovieOpen}
-                    setDeleteModalOpen={setDeleteModalOpen}
-                    setEditModalOpen={setEditModalOpen}
                 />
             </div>
             <div>{/* something will be here later */}</div>

@@ -6,7 +6,7 @@ const ModalHeader = ({ setModal, children }) => {
         <React.Fragment>
             <div className="close-btn-box">
                 <img
-                    onClick={() => setModal((isOpenModal) => !isOpenModal)}
+                    onClick={setModal}
                     width={'23.37px'}
                     src="./images/add-movie-close-icon.png"
                     alt="close-btn"

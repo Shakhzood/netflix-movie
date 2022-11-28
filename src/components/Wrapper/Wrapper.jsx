@@ -6,7 +6,7 @@ const Wrapper = (props) => {
     const { isModalOpen, setModal, children } = props;
 
     return (
-        <div onClick={() => setModal(!isModalOpen)} className={`${isModalOpen ? 'wrapper' : ''}`}>
+        <div onClick={setModal} className={`${isModalOpen ? 'wrapper' : ''}`}>
             {children}
         </div>
     );
