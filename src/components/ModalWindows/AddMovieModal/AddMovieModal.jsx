@@ -1,23 +1,75 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import ModalHeader from '../ModalHeader/ModalHeader';
+import { postNewMovie } from '../../../Redux/Thunk/Thunk';
+
 import './AddMovieModal.css';
 
+let genreArr = [
+    { id: 1, isChecked: false, genre: 'crime' },
+    { id: 2, isChecked: false, genre: 'documentary' },
+    { id: 3, isChecked: false, genre: 'horror' },
+    { id: 4, isChecked: false, genre: 'comedy' },
+];
+
 const AddMovieModal = ({ isAddMovieOpen, setModal, children }) => {
+    const dispatch = useDispatch();
     const [isGanreOpen, setGanreOpen] = useState(false);
     const [title, setTitle] = useState('');
     const [releaseDate, setReleaseDate] = useState('');
-    
+    const [getMovieUrl, setMovieUrl] = useState('');
+    const [getRating, setRating] = useState('');
+    const [getRuntime, setRuntime] = useState(0);
+    const [getOverview, setOverview] = useState('');
+
+    // genre
+    const [genres, setGenre] = useState(genreArr);
+    let selectedGenresArr = genres
+        .filter((item) => item.isChecked === true)
+        .map((item) => item.genre);
+
+    let newMovieObj = {
+        title: title,
+        poster_path: getMovieUrl,
+        overview: getOverview,
+        release_date: releaseDate,
+        runtime: Number(getRuntime),
+        genres: selectedGenresArr,
+    };
+
     const getMovieTitle = (e) => {
         setTitle(e.target.value);
     };
-    const test = (e) => {
+    const getDate = (e) => {
         setReleaseDate(e.target.value);
-        console.log(releaseDate);
     };
-
-
+    const getMovieUrlFunc = (e) => {
+        setMovieUrl(e.target.value);
+    };
+    const getMovieRating = (e) => {
+        setRating(e.target.value);
+    };
+    const getMovieRuntime = (e) => {
+        setRuntime(e.target.value);
+    };
+    const getOverviewFunc = (e) => {
+        setOverview(e.target.value);
+    };
+    const getGenre = (e, genreId) => {
+        let newGenre = genres.map((item) => {
+            if (item.id === genreId) {
+                return { ...item, isChecked: e.target.checked };
+            } else {
+                return item;
+            }
+        });
+        setGenre(newGenre);
+    };
+    const submitNewMovieInfo = () => {
+        dispatch(postNewMovie(newMovieObj));
+    };
 
     return (
         <div
@@ -30,7 +82,14 @@ const AddMovieModal = ({ isAddMovieOpen, setModal, children }) => {
                 <div className="make-center">
                     <div className="movie-info-container">
                         <div>
-                            <Input stateValue={title} onChange={getMovieTitle} type="text" label="title" value="Moana" className="input-big" />
+                            <Input
+                                stateValue={title}
+                                onChange={getMovieTitle}
+                                type="text"
+                                label="title"
+                                value="Moana"
+                                className="input-big"
+                            />
                         </div>
                         <div className="date-container">
                             <img
@@ -39,22 +98,28 @@ const AddMovieModal = ({ isAddMovieOpen, setModal, children }) => {
                                 alt="date-icon"
                             />
                             <Input
-                                stateValue={releaseDate} 
-                                onChange={test}
+                                stateValue={releaseDate}
+                                onChange={getDate}
                                 type="date"
                                 label="RELEASE DATE"
                                 placeholder="Select Date"
                                 className="input-small"
-
                             />
                         </div>
                         <div>
-                            <Input label="movie url" value="https://" />
+                            <Input
+                                stateValue={getMovieUrl}
+                                onChange={getMovieUrlFunc}
+                                label="movie url"
+                                placeholder="https://"
+                            />
                         </div>
 
                         <div>
                             <Input
-                                type="text"
+                                stateValue={getRating}
+                                onChange={getMovieRating}
+                                type="number"
                                 label="RATING"
                                 placeholder="7.8"
                                 className="input-small"
@@ -83,18 +148,17 @@ const AddMovieModal = ({ isAddMovieOpen, setModal, children }) => {
                                         onClick={(e) => e.stopPropagation()}
                                         className="select-genre"
                                     >
-                                        <p>
-                                            <input type="checkbox" /> <span>Crime</span>
-                                        </p>
-                                        <p>
-                                            <input type="checkbox" /> <span>Documentary </span>
-                                        </p>
-                                        <p>
-                                            <input type="checkbox" /> <span>Horror</span>
-                                        </p>
-                                        <p>
-                                            <input type="checkbox" /> <span>Comedy</span>
-                                        </p>
+                                        {genres.map((item) => {
+                                            return (
+                                                <p key={item.id}>
+                                                    <input
+                                                        onChange={(e) => getGenre(e, item.id)}
+                                                        type="checkbox"
+                                                    />
+                                                    <span>{item.genre}</span>
+                                                </p>
+                                            );
+                                        })}
                                     </div>
                                 )}
                             </div>
@@ -102,7 +166,9 @@ const AddMovieModal = ({ isAddMovieOpen, setModal, children }) => {
 
                         <div>
                             <Input
-                                type="text"
+                                stateValue={getRuntime}
+                                onChange={getMovieRuntime}
+                                type="number"
                                 label="RUNTIME"
                                 placeholder="minutes"
                                 className="input-small"
@@ -116,6 +182,8 @@ const AddMovieModal = ({ isAddMovieOpen, setModal, children }) => {
                         {/* textarea */}
                         <p className="label">OVERVIEW</p>
                         <textarea
+                            value={getOverview}
+                            onChange={getOverviewFunc}
                             className="textarea"
                             name=""
                             id=""
@@ -129,7 +197,7 @@ const AddMovieModal = ({ isAddMovieOpen, setModal, children }) => {
                 <div className="btn-container">
                     {/* two buttons */}
                     <Button type="button">reset</Button>
-                    <Button type="button" className="submit-btn">
+                    <Button onClick={submitNewMovieInfo} type="button" className="submit-btn">
                         submit
                     </Button>
                 </div>

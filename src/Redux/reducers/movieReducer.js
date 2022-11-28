@@ -12,6 +12,15 @@ const saveMoviesData = (state, movieListData) => {
         movieListData,
     };
 };
+const addNewMovie = (state, readyNewMovie) => {
+    return {
+        ...state,
+        movieListData: {
+            ...state.movieListData,
+            data: [...state.movieListData.data, readyNewMovie],
+        },
+    };
+};
 
 const movieReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -19,6 +28,8 @@ const movieReducer = (state = initialState, action) => {
             return selectMovieInfo(state, action.payload);
         case 'SAVE_MOVIES_DATA':
             return saveMoviesData(state, action.payload);
+        case 'ADD_NEW_MOVIE':
+            return addNewMovie(state, action.payload);
         default:
             return state;
     }
