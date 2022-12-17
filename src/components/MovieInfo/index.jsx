@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 import './MovieInfo.css';
 
 const MovieInfo = ({ setMovieOpen }) => {
-    const { movieListData, movieId } = useSelector((state) => state.movieReducer);
+    const { movieListData, movieId, selectedMovie } = useSelector((state) => state.movieReducer);
     const { data } = movieListData;
     const currentMovie = data.find((item) => item.id == movieId);
 
     let isMovieAvailable = movieListData.data !== undefined && movieListData.data.length > 0;
-    let currentMoiveRunTime = currentMovie.runtime;
+    let currentMoiveRunTime = selectedMovie.runtime;
     let hours = currentMoiveRunTime / 60;
     let rhours = Math.floor(hours);
     let minutes = Math.floor((hours - rhours) * 60);
@@ -37,31 +37,31 @@ const MovieInfo = ({ setMovieOpen }) => {
                     <img
                         width={280}
                         src={
-                            isMovieAvailable && currentMovie.title === 'Zootopia'
+                            isMovieAvailable && selectedMovie.title === 'Zootopia'
                                 ? '/images/defaultImage.jpg'
-                                : currentMovie.poster_path
+                                : selectedMovie.poster_path
                         }
                         alt="movieImage"
                     />
                 </div>
                 <div className="selected-movie-info-box">
                     <p className="moive-title">
-                        {isMovieAvailable && currentMovie.title}
+                        {isMovieAvailable && selectedMovie.title}
                         <span className="movie-rating">
-                            {isMovieAvailable && currentMovie.vote_average}
+                            {isMovieAvailable && selectedMovie.vote_average}
                         </span>{' '}
                     </p>
                     <span className="movie-type">
                         {isMovieAvailable &&
-                            currentMovie.genres.map((type, idx) => <span key={idx}>{type}, </span>)}
+                            selectedMovie.genres.map((type, idx) => <span key={idx}>{type}, </span>)}
                     </span>{' '}
                     <br />
                     <br />
                     <span className="release_date">
-                        {isMovieAvailable && currentMovie.release_date}
+                        {isMovieAvailable && selectedMovie.release_date}
                     </span>
                     <span className="runtime">{isMovieAvailable && fullRunTime}</span> <br /> <br />
-                    <span className="overview">{isMovieAvailable && currentMovie.overview}</span>
+                    <span className="overview">{isMovieAvailable && selectedMovie.overview}</span>
                 </div>
             </div>
         </div>

@@ -106,8 +106,6 @@
   color: #FFFFFF;
 
   mix-blend-mode: normal;
-  /* opacity: 0.3; */
-  /* position: absolute; */
   z-index: -1;
 }
 
@@ -132,10 +130,19 @@ input[type=checkbox] {
 }
 
 .btn-container {
-  margin: 42px 0;
+  margin: 12px 0;
   width: 91%;
   padding: 12px;
 
   display: flex;
   justify-content: end;
+}
+
+.error-msg {
+  margin: 8px 0;
+  color: red;
+}
+
+.genre-name {
+  text-transform: capitalize;
 }

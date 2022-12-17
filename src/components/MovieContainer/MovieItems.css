@@ -1,9 +1,10 @@
 .single-movie {
   width: 500px;
-  height: 750px;
+  height: 840px;
   margin-bottom: 3rem;
   cursor: pointer;
   position: relative;
+
 }
 
 .black-circle {
@@ -23,7 +24,6 @@
   flex-direction: column;
 }
 
-/* edit modal window */
 .edit-modal-window {
   height: 111px;
   background: rgba(35, 35, 35, 0.918051);
@@ -132,6 +132,7 @@
   /* identical to box height */
 
   color: #ffffff;
+  margin-right: 6px;
 
   mix-blend-mode: normal;
   opacity: 0.5;

@@ -1,20 +1,19 @@
 import React from 'react';
-import {useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ModalHeader from '../ModalHeader/ModalHeader';
 import { deleteSingleMovie } from '../../../Redux/Thunk/Thunk';
 import './DeleteMovieModal.css';
 
 const DeleteMovieModal = () => {
-    const {deletingMovieId, isDeleteModalOpen} = useSelector((state) => state.movieReducer);
+    const { deletingMovieId, isDeleteModalOpen } = useSelector((state) => state.movieReducer);
     const dispatch = useDispatch();
 
     const deleteMovie = (deletingMovieId) => {
-        console.log(deletingMovieId);
         dispatch(deleteSingleMovie(deletingMovieId));
     };
 
     const setModal = () => {
-        dispatch({type: 'CLOSING_MODAL', payload: 'isDeleteModalOpen'});
+        dispatch({ type: 'CLOSING_MODAL', payload: 'isDeleteModalOpen' });
     };
 
     return (

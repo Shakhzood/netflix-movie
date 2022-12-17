@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { searchingMovieByTitle } from '../../Redux/Thunk/Thunk';
 import AddMovieModal from '../ModalWindows/AddMovieModal/AddMovieModal';
 import Wrapper from '../Wrapper/Wrapper';
 import './header.css';
@@ -41,15 +42,23 @@ const HeaderTop = styled.header`
 `;
 
 const Header = () => {
-    const {isAddMovieOpen} = useSelector((state) => state.movieReducer);
+    const { isAddMovieOpen } = useSelector((state) => state.movieReducer);
     const dispatch = useDispatch();
-    console.log(isAddMovieOpen);
-    // const [isAddMovieOpen, setAddMovie] = useState(false);
+    const [movieTitle, setMovieTitle] = useState('');
+
+    const searchMovieByTitle = () => {
+        dispatch(searchingMovieByTitle(movieTitle));
+        setMovieTitle('');
+        dispatch({ type: 'SET_GENRE_IDX', payload: 0 });
+    };
+    const searchMovie = () => {
+        dispatch({ type: 'OPEN_MODAL', payload: 'isAddMovieOpen' });
+    };
 
     return (
         <Fragment>
-            <Wrapper isModalOpen={isAddMovieOpen} setModal={() => dispatch({type: 'CLOSING_MODAL', payload: 'isAddMovieOpen'})}>
-                <AddMovieModal isAddMovieOpen={isAddMovieOpen} setModal={() => dispatch({type: 'CLOSING_MODAL', payload: 'isAddMovieOpen'})} />
+            <Wrapper isModalOpen={isAddMovieOpen} setModal={() => dispatch({ type: 'CLOSING_MODAL', payload: 'isAddMovieOpen' })}>
+                <AddMovieModal isAddMovieOpen={isAddMovieOpen} setModal={() => dispatch({ type: 'CLOSING_MODAL', payload: 'isAddMovieOpen' })} />
             </Wrapper>
 
             <HeaderContainer>
@@ -63,7 +72,7 @@ const Header = () => {
                             alt="logo"
                         />
                         <Button
-                            onClick={() => dispatch({type: 'OPEN_MODAL', payload: 'isAddMovieOpen'})}
+                            onClick={searchMovie}
                             className="btn-pointer"
                         >
                             + add movie
@@ -74,11 +83,13 @@ const Header = () => {
 
                         <div className="userInput">
                             <input
+                                onChange={(e) => setMovieTitle(e.target.value)}
+                                value={movieTitle}
                                 className="input-value"
                                 type="text"
                                 placeholder="What do you want to watch?"
                             />
-                            <button className="search-btn btn-pointer">search</button>
+                            <button onClick={searchMovieByTitle} className="search-btn btn-pointer">search</button>
                         </div>
                     </div>
                 </HeaderTop>

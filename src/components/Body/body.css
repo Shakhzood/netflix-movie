@@ -44,6 +44,11 @@
     color: #FFFFFF;
     margin: 0 8px;
     list-style-type: none;
+    cursor: pointer;
+}
+
+.highlight {
+    color: #F65261;
 }
 
 /* Sort by */
@@ -64,6 +69,10 @@
     opacity: 0.6;
 }
 
+.sort-by-selection {
+    border: none;
+}
+
 .select-date {
     font-family: 'Montserrat';
     font-style: normal;
@@ -82,11 +91,17 @@
     width: 296px;
     display: flex;
     justify-content: space-around;
+    position: relative;
+
 }
 
 .red-heart {
     height: fit-content;
     margin: 2px;
+    border: 1px solid red;
+    position: absolute;
+    top: 5px;
+    right: 17px;
 }
 
 .number-of-movies {

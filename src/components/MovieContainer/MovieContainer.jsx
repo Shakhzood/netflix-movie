@@ -6,7 +6,7 @@ import MovieItems from './MovieItems';
 import { fetchMovies } from '../../Redux/Thunk/Thunk';
 import './MovieContainer.css';
 
-const MovieContainer = ({setMovieOpen }) => {
+const MovieContainer = ({ setMovieOpen }) => {
     const { movieListData } = useSelector((state) => state.movieReducer);
 
     const dispatch = useDispatch();
@@ -19,6 +19,7 @@ const MovieContainer = ({setMovieOpen }) => {
     return (
         <React.Fragment>
             <div className="movie-container">
+
                 {isMovieAvailable &&
                     movieListData.data.map((movie) => (
                         <MovieItems
@@ -27,6 +28,7 @@ const MovieContainer = ({setMovieOpen }) => {
                             {...movie}
                         />
                     ))}
+
             </div>
         </React.Fragment>
     );

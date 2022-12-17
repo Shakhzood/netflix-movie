@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { editSingleMovie, selectSingleMovie } from '../../Redux/Thunk/Thunk';
+
 import './MovieItems.css';
 
 const MovieItems = ({
-    setDeleteModalOpen,
     id: movieId,
     title,
     year,
@@ -14,27 +16,31 @@ const MovieItems = ({
 }) => {
     const [isOpen, setOpen] = useState(false);
     const [editMovie, setEditMovie] = useState({});
-    const { movieListData } = useSelector((state) => state.movieReducer);
+    const { movieListData, selectedMovie } = useSelector((state) => state.movieReducer);
     const dispatch = useDispatch();
+
+    //editMovie state
+
 
     const openEditWindow = (e) => {
         e.stopPropagation();
         setOpen(!isOpen);
     };
     const openDeleteWindow = (movieId) => {
-        dispatch({type: 'OPEN_MODAL', payload: 'isDeleteModalOpen' });
+        dispatch({ type: 'OPEN_MODAL', payload: 'isDeleteModalOpen' });
         setOpen(!isOpen);
-        dispatch({type:'UPDATE_DELETING_MOVIE_ID', payload: movieId});
+        dispatch({ type: 'UPDATE_DELETING_MOVIE_ID', payload: movieId });
     };
 
     const editMovieFunc = (movieId) => {
-        dispatch({type: 'OPEN_MODAL', payload: 'isEditModalOpen'});
-        let selectedElem = movieListData.find((item) => item.id === movieId);
+        dispatch({ type: 'OPEN_MODAL', payload: 'isEditModalOpen' });
+        let selectedElem = movieListData.data.find((item) => item.id === movieId);
+        dispatch({ type: 'EDIT_MOVIE', payload: selectedElem });
         setEditMovie(selectedElem);
     };
-    // const { title, movieUrl, runTime, releaseDate, genre, rating, overview } = editMovie;
+
     function selectMovie(movieId) {
-        dispatch({ type: 'UPDATE_MOVIE_INFO', payload: movieId });
+        dispatch(selectSingleMovie(movieId));
         setMovieOpen(true);
         window.scrollTo(0, 0);
     }
@@ -43,12 +49,12 @@ const MovieItems = ({
         <React.Fragment>
             <div className="single-movie" key={movieId} onClick={() => selectMovie(movieId)}>
                 <img
+                    width={500}
                     className="movie-image"
-                    src={`${title === 'Zootopia' ? './images/defaultImage.jpg' : poster_path}`}
+                    src={`${title === null || title === undefined ? './images/defaultImage.jpg' : poster_path}`}
                     alt="movieImage"
                 />
 
-                {/* 3 dots with back circle */}
                 {!isOpen && (
                     <div className="black-circle" onClick={openEditWindow}>
                         <span className="buttel-point box1"></span>
@@ -76,7 +82,7 @@ const MovieItems = ({
                     {genres.map((genre, i) => {
                         return (
                             <span key={i} className="movie-category">
-                                {genre}
+                                {genre},
                             </span>
                         );
                     })}

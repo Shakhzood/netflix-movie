@@ -13,9 +13,11 @@
 }
 
 .hide-delete {
+  position: absolute;
   width: 0;
   height: 0;
   display: none;
+  visibility: hidden;
 }
 
 .close-btn-box {

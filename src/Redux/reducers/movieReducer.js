@@ -1,16 +1,20 @@
 const initialState = {
   movieListData: {},
   movieId: 0,
+  selectedMovie: {},
   deletingMovieId: 0,
+  editMovie: {},
+  genreIdx: 0,
 
   //modal window state
   isDeleteModalOpen: false,
   isEditModalOpen: false,
   isAddMovieOpen: false,
+  isCongratulationOpen: false,
 };
 
-const selectMovieInfo = (state, movieId) => {
-  return { ...state, movieId };
+const selectMovieInfo = (state, selectedMovie) => {
+  return { ...state, selectedMovie };
 };
 const saveMoviesData = (state, movieListData) => {
   return {
@@ -45,6 +49,25 @@ const openModal = (state, modalName) => {
     [modalName]: true,
   };
 };
+const editMovie = (state, editingMovie) => {
+  return {
+    ...state,
+    editMovie: editingMovie
+  };
+};
+const editMovieInfo = (state, obj) => {
+  const { name, userValue } = obj;
+  return {
+    ...state,
+    editMovie: { ...state.editMovie, [name]: userValue }
+  };
+};
+const setGenreIdx = (state, genreIdx) => {
+  return {
+    ...state,
+    genreIdx,
+  };
+};
 
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -60,6 +83,12 @@ const movieReducer = (state = initialState, action) => {
       return closeModal(state, action.payload);
     case 'OPEN_MODAL':
       return openModal(state, action.payload);
+    case 'EDIT_MOVIE':
+      return editMovie(state, action.payload);
+    case 'EDIT_MOVIE_INFO':
+      return editMovieInfo(state, action.payload);
+    case 'SET_GENRE_IDX':
+      return setGenreIdx(state, action.payload);
     default:
       return state;
   }
